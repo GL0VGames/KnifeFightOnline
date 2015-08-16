@@ -9,7 +9,10 @@ var gulp  = require("gulp"),
 	
 gulp.task("build", function() {
 	gulp.src("www/index.html")
-		.pipe(replace({}))
+		.pipe(replace({
+		libs: "<script src=\"js/libs.js\"></script>",
+		js: "<script src=\"js/index.js\"></script>"
+	}))
 		.pipe(minHTML())
 		.pipe(gulp.dest("platforms/web/public/"));
 
@@ -18,6 +21,12 @@ gulp.task("build", function() {
 		.pipe(concat("index.js"))
 		.pipe(uglify({ mangle: false }))
 		.pipe(gulp.dest("platforms/web/public/js/"));
+
+	gulp.src("www/js/libs/**.ts")
+		.pipe(ts())
+		.pipe(concat("libs.js"))
+		.pipe(uglify({ mangle: false }))
+		.pipe(gulp.dest("platforms/web/public/js/"))
 
 	gulp.src("www/css/**.css")
 		.pipe(minCSS())
