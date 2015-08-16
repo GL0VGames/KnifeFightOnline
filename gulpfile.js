@@ -1,25 +1,32 @@
-var gulp = require("gulp"),
-	minHTML = require("gulp-minify-html"),
-	minCSS = require("gulp-minify-css"),
-	uglify = require("gulp-uglify"),
-	ts = require("gulp-typescript");
+var gulp  = require("gulp"),
+	minHTML  = require("gulp-minify-html"),
+	minCSS   = require("gulp-minify-css"),
+	uglify   = require("gulp-uglify"),
+	ts       = require("gulp-typescript"),
+	image    = require("gulp-imagemin"),
+	replace = require("gulp-html-replace"),
+	concat   = require("gulp-concat");
 	
 gulp.task("build", function() {
-	gulp.src("src/public/index.html")
+	gulp.src("www/index.html")
+		.pipe(replace({}))
 		.pipe(minHTML())
-		.pipe(gulp.dest("dist/public/"));
-		
-	gulp.src("src/server.js")
+		.pipe(gulp.dest("platforms/web/public/"));
+
+	gulp.src("www/js/**.ts")
+		.pipe(ts())
+		.pipe(concat("index.js"))
 		.pipe(uglify({ mangle: false }))
-		.pipe(gulp.dest("dist/"));
-		
-	gulp.src("src/public/js/**.js")
-		.pipe(uglify({ mangle: false }))
-		.pipe(gulp.dest("dist/public/js/"));
-		
-	gulp.src("src/public/css/**.css")
+		.pipe(gulp.dest("platforms/web/public/js/"));
+
+	gulp.src("www/css/**.css")
 		.pipe(minCSS())
-		.pipe(gulp.dest("dist/public/css/"));
+		.pipe(gulp.dest("platforms/web/public/css/"));
+
+	gulp.src("www/img/**/**")
+		.pipe(image({multipass: true}))
+		.pipe(gulp.dest("platforms/web/public/img/"));
+
 });
 
 gulp.task("default", ["build"], function () {
