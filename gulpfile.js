@@ -5,7 +5,8 @@ var gulp  = require("gulp"),
 	ts       = require("gulp-typescript"),
 	image    = require("gulp-imagemin"),
 	replace = require("gulp-html-replace"),
-	concat   = require("gulp-concat");
+	concat   = require("gulp-concat"),
+	rsync = require("gulp-rsync");
 	
 gulp.task("build", function() {
 	gulp.src("www/index.html")
@@ -37,6 +38,20 @@ gulp.task("build", function() {
 		.pipe(gulp.dest("platforms/web/public/img/"));
 
 });
+
+gulp.task("deploy", function() {
+	gulp.src("platforms/web/**")
+		.pipe(rsync({
+			root: "platforms/web",
+			hostname: "gl0vgames.com",
+			destination: "/usr/share/nginx/kfo/",
+			username: "root",
+			incremental: true,
+			progress: true,
+			recursive: true
+	}));
+	console.log("Change permissions on new files (644) and directories (755)!")
+})
 
 gulp.task("default", ["build"], function () {
 	gulp.watch("src/public/index.html", ["build"]);
