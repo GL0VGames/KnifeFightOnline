@@ -1,25 +1,29 @@
 {
-  "name": "KnifeFightOnline",
-  "version": "0.0.0",
-  "homepage": "https://github.com/GL0VGames/KnifeFightOnline",
-  "authors": [
-    "Graham Barber <grahammbarber@gmail.com>"
-  ],
-  "description": "An online version of GL0V Game's amazing card game.",
-  "moduleType": [
-    "globals",
-    "node"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "deepstream.io-client-js": "~0.2.21",
-    "phaser": "~2.4.2"
-  }
+	"name": "KnifeFightOnline",
+	"version": "0.0.0",
+	"homepage": "https://github.com/GL0VGames/KnifeFightOnline",
+	"authors": [
+		"Graham Barber <grahammbarber@gmail.com>"
+	],
+	"description": "An online version of GL0V Game's amazing card game.",
+	"moduleType": [
+		"globals",
+		"node"
+	],
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"dependencies": {
+		"deepstream.io-client-js": "~0.2.21",
+		"phaser": "~2.4.2",
+		"jquery": "~2.1.4"
+	},
+	"install": {
+		"path": "www/js/libs"
+	}
 }
