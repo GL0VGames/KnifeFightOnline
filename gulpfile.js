@@ -23,8 +23,8 @@ gulp.task("build", function() {
 		.pipe(uglify({ mangle: false }))
 		.pipe(gulp.dest("platforms/web/public/js/"));
 
-	gulp.src("www/js/libs/**.ts")
-		.pipe(ts())
+	gulp.src("www/js/libs/**/**.js")
+//		.pipe(ts())
 		.pipe(concat("libs.js"))
 		.pipe(uglify({ mangle: false }))
 		.pipe(gulp.dest("platforms/web/public/js/"))
