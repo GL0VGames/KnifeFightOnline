@@ -4,6 +4,6 @@ module.exports = {
 	},
 	deepstream: {
 		host: "localhost",
-		port: "6020"
+		port: 6020
 	}
 }
