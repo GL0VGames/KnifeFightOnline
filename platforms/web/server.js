@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.listen(config.express.port);
 console.log("Dial " + config.express.port + " for the website.");
 
-server.set("host", config.deepstream.host);
+/*server.set("host", config.deepstream.host);
 server.set("port", config.deepstream.port);
 server.start();
-console.log("Spin up http://" + config.deepstream.host + config.deepstream.port + " for a server connection.");
+console.log("Spin up http://" + config.deepstream.host + config.deepstream.port + " for a server connection.");*/
