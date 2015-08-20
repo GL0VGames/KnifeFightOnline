@@ -17,10 +17,10 @@ gulp.task("build", function() {
 		.pipe(minHTML())
 		.pipe(gulp.dest("platforms/web/public/"));
 
-	gulp.src("www/js/**.ts")
-		.pipe(ts())
+	gulp.src("www/js/**.js")
+//		.pipe(ts())
+//		.pipe(uglify({ mangle: false }))
 		.pipe(concat("index.js"))
-		.pipe(uglify({ mangle: false }))
 		.pipe(gulp.dest("platforms/web/public/js/"));
 
 	gulp.src("www/js/libs/**/**.js")
@@ -54,7 +54,7 @@ gulp.task("deploy", function() {
 })
 
 gulp.task("default", ["build"], function () {
-	gulp.watch("src/public/index.html", ["build"]);
-	gulp.watch("src/public/js/**.js", ["build"]);
-	gulp.watch("src/public/less/**.css", ["build"]);
+	gulp.watch("www/index.html", ["build"]);
+	gulp.watch("www/js/**.js", ["build"]);
+	gulp.watch("www/css/css/**.css", ["build"]);
 });
